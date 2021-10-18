@@ -18,6 +18,7 @@ Requires:
 | CHAIN_ID                 | Yes      | -                   | Terra chaind id                 |
 | ANCHOR_MARKET_CONTRACT   | Yes      | -                   | Anchor market contract address  |
 | ANCHOR_OVERSEER_CONTRACT | Yes      | -                   | Anchor overseer contact address |
+| TELEGRAM_ADMIN_USERMAMES | Yes      | -                   | Telegram admins usernames       |
 | DEBUG                    | No       | -                   | Set logging to debug            |
 | DB_NAME                  | No       | `ltv`               | Mongo database name             |
 | DB_HOST                  | No       | `localhost`         | Mongo database host             |
