@@ -18,5 +18,8 @@ COPY terra_ltv_bot ./terra_ltv_bot
 
 RUN poetry install --no-dev --no-interaction
 
+COPY ./requirements.in .
+RUN pip install -r requirements.in
+
 ENTRYPOINT [ "poetry", "run" ]
 CMD [ "terra-ltv-bot" ]
