@@ -28,13 +28,15 @@ class Bot:
             host=config.db_host, port=config.db_port
         )[config.db_name]
         self.redis = aioredis.from_url(config.redis_url)
+        self.config = config
 
     async def on_startup(self, dp: Dispatcher):
         await init_beanie(
             database=self.db,
             document_models=all_models,
         )
-        Handlers(dp, self.terra, self.redis)
+        x = Handlers(dp=dp, terra=self.terra, redis=self.redis, config=self.config)
+        await x.init_hack()
         Tasks(dp, self.bot, self.terra, self.redis)
 
     async def on_shutdown(self, _: Dispatcher):

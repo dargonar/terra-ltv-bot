@@ -1,4 +1,5 @@
 import os
+import ujson
 from typing import Optional
 
 
@@ -15,6 +16,7 @@ class Config:
         chain_id: str,
         anchor_market_contract: str,
         anchor_overseer_contract: str,
+        telegram_admin_usermames: str,
         validator_address: Optional[str],
     ) -> None:
         self.debug = debug
@@ -27,10 +29,13 @@ class Config:
         self.chain_id = chain_id
         self.anchor_market_contract = anchor_market_contract
         self.anchor_overseer_contract = anchor_overseer_contract
+        self.telegram_admin_usermames = telegram_admin_usermames
         self.validator_address = validator_address
 
     @classmethod
     def from_env(cls) -> "Config":
+        from dotenv import load_dotenv
+        load_dotenv()
         return cls(
             bool(os.getenv("DEBUG")),
             os.environ["BOT_TOKEN"],
@@ -42,5 +47,6 @@ class Config:
             os.environ["CHAIN_ID"],
             os.environ["ANCHOR_MARKET_CONTRACT"],
             os.environ["ANCHOR_OVERSEER_CONTRACT"],
+            os.environ["TELEGRAM_ADMIN_USERMAMES"],
             os.getenv("VALIDATOR_ADDRESS"),
         )

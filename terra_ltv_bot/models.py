@@ -27,6 +27,7 @@ class Subscription(Document):
     protocol: str
     alert_threshold: Optional[float]
     telegram_id: int
+    telegram_name: str
 
     class Collection:
         indexes = [
@@ -56,4 +57,15 @@ class Subscription(Document):
         return threshold
 
 
-all_models = [Address, Subscription]
+class User(Document):
+    telegram_user: Indexed(str, unique=True)  # type: ignore
+
+    class Config:
+        validate_assignment = True
+
+    @validator("telegram_user", always=True)
+    def telegram_user_should_be_a_telegram_account(cls, v: str):
+        return v
+
+
+all_models = [Address, Subscription, User]

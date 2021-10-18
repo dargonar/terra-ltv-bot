@@ -46,7 +46,8 @@ class Tasks:
         self.redis = redis
         dp._loop_create_task(self.check_ltv_ratio())
 
-    @every(5 * 60)
+    # @every(5 * 60)
+    @every(30)
     @skip_exceptions
     async def check_ltv_ratio(self) -> None:
         log.debug("checking ltv ratios")
@@ -78,7 +79,7 @@ class Tasks:
                     log.info(
                         f"{account_address} {subscription.telegram_id} {ltv} alerted"
                     )
-                    await self.redis.set(cache_key, 1, ex=timedelta(hours=1))
+                    await self.redis.set(cache_key, 1, ex=timedelta(minutes=10))
                 except TelegramAPIError as e:
                     log.warning(
                         f"Couldn't send alert to {subscription.telegram_id} "
