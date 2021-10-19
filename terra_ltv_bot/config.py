@@ -40,7 +40,7 @@ class Config:
             bool(os.getenv("DEBUG")),
             os.environ["BOT_TOKEN"],
             os.getenv("DB_NAME", "ltv"),
-            os.getenv("DB_HOST", "localhost"),
+            os.getenv("DB_HOST", "127.0.0.1"),
             int(os.getenv("DB_PORT", "27017")),
             os.getenv("REDIS_URL", "redis://localhost"),
             os.environ["LCD_URL"],

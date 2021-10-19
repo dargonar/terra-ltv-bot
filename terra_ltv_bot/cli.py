@@ -13,5 +13,8 @@ def entrypoint() -> None:
     config = Config.from_env()
     if config.debug:
         logging.getLogger(__root_name__).setLevel(logging.DEBUG)
+    # log.info(f"starting #2")
     bot = Bot(config)
+    # log.info(f"starting #3")
     bot.run()
+    # log.info(f"starting #4")

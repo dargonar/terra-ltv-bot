@@ -24,5 +24,16 @@ RUN poetry install --no-dev --no-interaction
 COPY requirements.in requirements.in
 RUN pip install -r requirements.in
 
+# COPY entrypoint entrypoint
+# RUN sed -i 's/\r$//g' entrypoint
+# RUN chmod +x entrypoint
+# CMD ["entrypoint"]
+
+#COPY start-bot ./start-bot
+#RUN sed -i 's/\r$//g' ./start-bot
+#RUN chmod +x ./start-bot
+
+
 ENTRYPOINT [ "poetry", "run" ]
 CMD [ "terra-ltv-bot" ]
+
